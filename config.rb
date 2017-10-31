@@ -38,7 +38,7 @@ page '/*.txt', layout: false
 # Methods defined in the helpers block are available in templates
 helpers do
   def url link
-    'https://zacky1972.github.io/tech/' + link
+    'https://zacky1972.github.io/tech' + link
   end
 end
 
