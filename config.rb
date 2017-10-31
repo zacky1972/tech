@@ -38,11 +38,7 @@ page '/*.txt', layout: false
 # Methods defined in the helpers block are available in templates
 helpers do
   def url link
-    if config['host'].nil? then
-      link
-    else
-      config['host'] + link
-    end
+    'https://zacky1972.github.io/tech/' + link
   end
 end
 
@@ -53,13 +49,12 @@ configure :build do
 
   # Minify Javascript on build
   # activate :minify_javascript
-
   # リポジトリ名を host に設定しておく
   # こうすることで stylesheet_link_tag などで展開されるパスが
-  # /tech/stylesheets/*.css
+  # https://zacky1972.github.io/tech/stylesheets/*.css
   # のようになる
   activate :asset_hash
-  activate :asset_host, :host => "/tech"
+  activate :asset_host, :host => 'https://zacky1972.github.io/tech'
 end
 
 # デプロイの設定
