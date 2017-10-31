@@ -8,6 +8,10 @@ activate :blog do |blog|
   # ブログ機能のオプションを設定
 end
 
+## GitHub Flavored Markdown
+set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
+set :markdown_engine, :redcarpet
+
 # Per-page layout changes:
 #
 # With no layout
