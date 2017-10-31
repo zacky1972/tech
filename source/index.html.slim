@@ -1,10 +1,13 @@
 ---
-title: Welcome to Middleman
+title: 実験室 〜 Lab in ZACKY's Laboratory
 ---
+h1 実験室 〜 Lab in ZACKY's Laboratory
 
-.welcome
-  .logo
-    == image_tag 'middleman-logo.svg'
-  h1 Middleman is Watching
-  p.doc
-    == link_to "Read Online Documentation", "http://middlemanapp.com/"
+- blog.articles.each do |article|
+  article
+    h1
+      a href="#{article.url}" = article.title
+      time= article.date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[article.date.wday]})")
+    = article.summary
+    a href="#{article.url}"  もっと読む
+

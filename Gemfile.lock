@@ -102,11 +102,14 @@ GEM
     middleman-sprockets (4.1.1)
       middleman-core (~> 4.0)
       sprockets (>= 3.0)
+    mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.2)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     padrino-helpers (0.13.3.4)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.13.3.4)
@@ -150,6 +153,7 @@ DEPENDENCIES
   middleman-deploy (~> 2.0.0.pre.alpha)
   middleman-livereload
   middleman-sprockets (>= 4.0.0)
+  nokogiri
   redcarpet
   slim (>= 3.0)
   tzinfo-data
