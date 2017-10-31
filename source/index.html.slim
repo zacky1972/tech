@@ -6,7 +6,7 @@ h1 実験室 〜 Lab in ZACKY's Laboratory
 - blog.articles.each do |article|
   article
     h1
-      = link_to url(article.title), article.url
+      = link_to article.title, url(article.url)
       time= article.date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[article.date.wday]})")
     = article.summary
     = link_to 'もっと読む', url(article.url)
