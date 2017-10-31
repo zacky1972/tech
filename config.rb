@@ -54,6 +54,7 @@ configure :build do
   # こうすることで stylesheet_link_tag などで展開されるパスが
   # /tech/stylesheets/*.css
   # のようになる
+  activate :asset_hash
   activate :asset_host, :host => "/tech"
 end
 
