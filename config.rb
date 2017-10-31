@@ -4,6 +4,10 @@ require 'slim'
 # Page options, layouts, aliases and proxies
 ###
 
+activate :blog do |blog|
+  # ブログ機能のオプションを設定
+end
+
 # Per-page layout changes:
 #
 # With no layout
