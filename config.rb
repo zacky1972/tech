@@ -6,6 +6,7 @@ require 'slim'
 
 activate :blog do |blog|
   # ブログ機能のオプションを設定
+  blog.default_extension = ".md"
 end
 
 ## GitHub Flavored Markdown
