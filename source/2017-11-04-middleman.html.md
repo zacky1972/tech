@@ -144,7 +144,7 @@ title: タイトル
 
 ```
 
-### 4. GitHub Falavored Markdown の導入
+### 4. GitHub Flavored Markdown の導入
 
 Gemfile に下記を追加します。
 
