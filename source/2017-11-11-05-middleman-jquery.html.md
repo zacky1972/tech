@@ -3,7 +3,7 @@ title: Middleman v4 + gulp + Browserify で jQuery を使えるようにする
 ---
 # Middleman v4 + gulp + Browserify で jQuery を使えるようにする
 
-Middleman v4 は外部パイプラインになったので，それに合わせて Middleman への jQuery のインストールの方法も多様なバリエーションが提供されるようになりました。今回はその1つとして，gulp，Browserify，browserify-shim を使った方法を説明します。
+Middleman v4 は外部パイプラインになったので，それに合わせて Middleman への jQuery のインストールの方法も多様なバリエーションが提供されるようになりました。今回はその1つとして，gulp，Browserify を使った方法を説明します。
 
 ## 参考記事
 
