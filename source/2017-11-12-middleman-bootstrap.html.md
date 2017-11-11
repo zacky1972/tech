@@ -22,7 +22,7 @@ Middleman に npm, gulp, Browserify, jQuery をインストールしておきま
 2. all.js に Bootstrap を追加する
 3. gulpfile.js に Bootstrap の CSS ファイルをコピーするタスクを追加する
 4. layout.slim にレスポンシブメタタグを追加する
-5. layout.slim のスタイルシートに Bootstrap を追加する
+5. site.scss に Bootstrap を追加する
 
 ## 1. npm で Bootstrap v4 と Popper.js をインストールする
 
@@ -43,7 +43,7 @@ source/javascripts/all.js の require('jquery') 以下を次のようにしま�
 
 ```javascript
 var $ = require('jquery');
-require('popper');
+require('popper.js');
 require('bootstrap');
 ```
 
@@ -57,8 +57,18 @@ gulp.task('build', ['sass', 'bundle', 'bootstrap']);
 gulp.task('bootstrap', copyBootstrapCSS);
 
 function copyBootstrapCSS() {
-	gulp.src('./node_modules/bootstrap/dist/css/*')
-		.pipe(gulp.dest(cssConf.destPath));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-grid.min.css')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-grid.min.css.map')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-reboot.min.css')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-reboot.min.css.map')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css.map')
+    .pipe(gulp.dest('./build/stylesheets'));
 }
 ```
 
@@ -72,21 +82,21 @@ var sass = require('gulp-sass');
 var neat = require('node-neat');
 
 var jsConf = {
-	srcPath: 'source/javascripts/all.js',
-	destFileName: 'javascripts/bundle.js',
-	destPath: '.tmp/dist/'
+  srcPath: 'source/javascripts/all.js',
+  destFileName: 'javascripts/bundle.js',
+  destPath: '.tmp/dist/'
 }
 
 var cssConf = {
-	srcPath: 'source/stylesheets/**/*.scss',
-	destFileName: 'site',
-	destPath: '.tmp/dist/stylesheets'
+  srcPath: 'source/stylesheets/**/*.scss',
+  destFileName: 'site',
+  destPath: '.tmp/dist/stylesheets'
 }
 
 var b = browserify({
-	entries: jsConf.srcPath,
-	cache: {},
-	packageCache: {}
+  entries: jsConf.srcPath,
+  cache: {},
+  packageCache: {}
 });
 
 gulp.task('default', ['build']);
@@ -99,22 +109,32 @@ gulp.task('sass', sassPreCompile);
 gulp.task('bootstrap', copyBootstrapCSS);
 
 function jsBundle() {
-	return b.bundle()
+  return b.bundle()
     .pipe(source(jsConf.destFileName))
-		.pipe(gulp.dest(jsConf.destPath));
+    .pipe(gulp.dest(jsConf.destPath));
 }
 
 function sassPreCompile() {
   gulp.src(cssConf.srcPath)
     .pipe(sass({
-    	includePaths: cssConf.destFileName
+      includePaths: cssConf.destFileName
     }))
     .pipe(gulp.dest(cssConf.destPath));
 }
 
 function copyBootstrapCSS() {
-	gulp.src('./node_modules/bootstrap/dist/css/*')
-		.pipe(gulp.dest(cssConf.destPath));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-grid.min.css')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-grid.min.css.map')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-reboot.min.css')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap-reboot.min.css.map')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(gulp.dest('./build/stylesheets'));
+  gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css.map')
+    .pipe(gulp.dest('./build/stylesheets'));
 }
 ```
 
@@ -129,34 +149,12 @@ source/layouts/layout.slim の head 部分を下記のようにします。
     meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
 ```
 
-## 5. layout.slim のスタイルシートに Bootstrap を追加する
+## 5. site.scss に Bootstrap を追加する
 
-source/layouts/layout.slim の stylesheet_link_tag の記述を下記のようにします。
+source/stylesheets/site.scss に下記の記述を足します。
 
-```slim
-    == stylesheet_link_tag "bootstrap", :site
-```
-
-layout.slim は全体として次のようになります。
-
-```slim
-doctype html
-html
-  head
-    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
-    meta charset="utf-8"
-    meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
-
-    title = current_page.data.title || "KK-Shift"
-
-    link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'
-
-    == stylesheet_link_tag "bootstrap", :site
-
-  body class="#{page_classes}"
-    == javascript_include_tag  "bundle"
-
-    == yield
+```scss
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
 ```
 
 ## 確認方法
