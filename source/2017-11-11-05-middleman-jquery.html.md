@@ -5,6 +5,8 @@ title: Middleman v4 + gulp + Browserify で jQuery を使えるようにする
 
 Middleman v4 は外部パイプラインになったので，それに合わせて Middleman への jQuery のインストールの方法も多様なバリエーションが提供されるようになりました。今回はその1つとして，gulp，Browserify を使った方法を説明します。
 
+この中で browserify-shim を使います。browserify-shim は jQuery などの CommonJS に対応していないモジュールを Browserify で使えるようにするツールです。
+
 ## 参考記事
 
 * [Browserify と browserify-shim でグローバルオブジェクトを扱う](https://whiskers.nukos.kitchen/2016/11/08/browserify-shim.html)
@@ -24,6 +26,10 @@ Middleman に npm, gulp, Browserify をインストールしておきます。
 1. npm で jQuery をインストールする
 2. all.js に jQuery を追加する
 3. layout.slim を書き換えて bundle.js の読み込みを body 以降にする
+4. npm で browserify-shim をインストールする
+5. package.json を書き換えて browserify-shim を有効にする
+6. npm でインストールした jQuery を browserify-shim が認識するようにする
+7. browserify-shim で jQuery をモジュール化するようにする
 
 ## 1. npm で jQuery をインストールする
 
@@ -54,6 +60,48 @@ source/layouts/layout.slim を書き換えて，下記のように bundle.js の
 
     == yield
 ```
+
+## 4. npm で browserify-shim をインストールする
+
+次のコマンドを実行します。
+
+```
+$ cd (Middleman のディレクトリ)
+$ npm install --save-dev browserify-shim
+```
+
+## 5. package.json を書き換えて browserify-shim を有効にする
+
+package.json に次の記述を足します。これにより Browserify が browserify-shim を認識します。
+
+```json
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+```
+
+## 6. npm でインストールした jQuery を browserify-shim が認識するようにする
+
+package.json に次の記述を足します。これにより browserify-shim が jquery と指定するだけで npm でインストールした jQuery を読みにいくようになります。
+
+```json
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+```
+
+## 7. browserify-shim で jQuery をモジュール化するようにする
+
+package.json に次の記述を足します。これにより browserify-shim が働いて jQuery がうまいことモジュール化されるようになります。
+
+```json
+  "browserify-shim": {
+    "jquery": "$"
+  }
+```
+
 
 ## 確認方法
 
