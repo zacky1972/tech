@@ -23,6 +23,8 @@ Middleman に npm, gulp, Browserify, jQuery をインストールしておきま
 3. gulpfile.js に Bootstrap の CSS ファイルをコピーするタスクを追加する
 4. layout.slim にレスポンシブメタタグを追加する
 5. site.scss に Bootstrap を追加する
+6. package.json を書き換えて npm でインストールした Bootstrap v4 と Popper.js を認識するようにする
+7. package.json を書き換えて browserify-shim で Bootstrap v4 と Popper.js をモジュール化するようにする
 
 ## 1. npm で Bootstrap v4 と Popper.js をインストールする
 
@@ -157,9 +159,67 @@ source/stylesheets/site.scss に下記の記述を足します。
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 ```
 
+## 6. package.json を書き換えて npm でインストールした Bootstrap v4 と Popper.js を認識するようにする
+
+package.json の browser の設定を次のように書き換えます。
+
+```json
+  "browser": {
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
+    "popper.js": "./node_modules/popper.js/dist/umd/popper.js",
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+```
+
+## 7. package.json を書き換えて browserify-shim で Bootstrap v4 と Popper.js をモジュール化するようにする
+
+package.json の browserify-shim の設定を次のように書き換えます。
+
+```json
+  "browserify-shim": {
+    "jquery": "$",
+    "popper.js": "$",
+    "bootstrap": {
+      "exports": "$",
+      "depends": [
+        "jquery:jQuery",
+        "popper.js:Popper.js"
+      ]
+    }
+  },
+```
+
+packege.json の Bufferify 周りの設定は下記のようになります。
+
+```json
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
+    "popper.js": "./node_modules/popper.js/dist/umd/popper.js",
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "popper.js": "$",
+    "bootstrap": {
+      "exports": "$",
+      "depends": [
+        "jquery:jQuery",
+        "popper.js:Popper.js"
+      ]
+    }
+  },
+```
+
 ## 確認方法
 
-source/index.html.slim に下記を追記してボタンを配置してみましょう。
+まず，Javascript Console でエラーが出ていないことを確認しましょう。
+
+次に source/index.html.slim に下記を追記してボタンを配置してみましょう。
 
 ```slim
 .container
@@ -176,5 +236,4 @@ $ middleman server
 ```
 
 [http://localhost:4567](http://localhost:4567) を表示した時に赤いボタンが表示されていれば成功です。
-
 
