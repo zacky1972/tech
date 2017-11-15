@@ -13,8 +13,8 @@ Middleman に npm, gulp, Browserify, jQuery をインストールしておきま
 2. [Middleman v4 で npm を使えるようにする](https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html)
 3. [Middleman v4 で gulp を使えるようにする](https://zacky1972.github.io/tech/2017/11/11/02-middleman-gulp.html)
 4. [Middleman v4 で Browserify を使えるようにする](https://zacky1972.github.io/tech/2017/11/11/03-middleman-browserify.html)
-5. [Middleman v4 + gulp + Browserify で Sass/Scss を使えるようにする](zacky1972.github.io/tech/2017/11/11/04-middleman-sass.html)
-6. [Middleman v4 + gulp + Browserify で jQuery を使えるようにする](zacky1972.github.io/tech/2017/11/11/05-middleman-jquery.html)
+5. [Middleman v4 + gulp + Browserify で Sass/Scss を使えるようにする](https://zacky1972.github.io/tech/2017/11/11/04-middleman-sass.html)
+6. [Middleman v4 + gulp + Browserify で jQuery を使えるようにする](https://zacky1972.github.io/tech/2017/11/11/05-middleman-jquery.html)
 
 ## 手順
 
