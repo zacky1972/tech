@@ -11,7 +11,7 @@ title: Middleman v4 で Webpack を使えるようにする
 
 ## 前提
 
-Middleman に npm と gulp をインストールしておきます。
+Middleman に npm をインストールしておきます。
 
 1. [GitHub Pages で Middleman v4 を使う](https://zacky1972.github.io/tech/2017/11/04/middleman.html)
 2. [Middleman v4 で npm を使えるようにする](https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html)
