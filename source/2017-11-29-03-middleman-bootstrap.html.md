@@ -17,8 +17,9 @@ Middleman に npm, Webpack をインストールしておきます。
 1. npm で Bootstrap v4 と Popper.js をインストールする
 2. npm で必要なパッケージをインストールする
 3. site.js に Bootstrap を追加する
-4. webpack.config.js に Bootstrap の CSS をコピーする設定を追加する
+4. webpack.config.js に site.css と Bootstrap の CSS を結合する設定を追加する
 5. layout.slim にレスポンシブメタタグと bundle を追加する
+6. site.css.scss に Bootstrap を追加する
 
 ## 1. npm で Bootstrap v4 と Popper.js をインストールする
 
@@ -50,7 +51,7 @@ require('popper.js');
 require('bootstrap');
 ```
 
-## 4. webpack.config.js に Bootstrap の CSS をコピーする設定を追加する
+## 4. webpack.config.js に site.css と Bootstrap の CSS を結合する設定を追加する
 
 webpack.config.js を次のようにします。
 
@@ -60,7 +61,8 @@ const webpack = require('webpack');
 
 const bootstrap = {
 	entry: [
-		__dirname + '/node_modules/bootstrap/scss/bootstrap.scss'
+		__dirname + '/node_modules/bootstrap/scss/bootstrap.scss',
+		__dirname + '/source/stylesheets/site.css.scss'
 	],
 	output: {
 		filename: 'bundle.css',
@@ -151,7 +153,17 @@ source/layouts/layout.slim の head 部分を下記のようにします。
 さらに stylesheet_link_tag の部分を下記のようにします。
 
 ```slim
-    == stylesheet_link_tag "bundle", :site
+    == stylesheet_link_tag "bundle"
+```
+
+## 6. site.css.scss に Bootstrap を追加する
+
+source/stylesheets/site.css.scss の冒頭を次のようにします。
+
+```scss
+@charset "utf-8";
+@import "normalize";
+@import "~bootstrap/scss/bootstrap";
 ```
 
 ## 確認方法
@@ -162,16 +174,39 @@ source/layouts/layout.slim の head 部分を下記のようにします。
 
 ```slim
 .container
-    button type="button" class="btn btn-danger"
-        Danger
+    button type="button" class="btn btn-danger" Danger
 ```
 
-ビルドしてサーバーを立ち上げます。
+サーバーを立ち上げます。
 
 ```
 $ cd (Middleman のディレクトリ)
-$ middleman build
 $ middleman server
 ```
 
 [http://localhost:4567](http://localhost:4567) を表示した時に赤いボタンが表示されていれば成功です。
+
+次に source/stylesheets/site.css.scss に下記を追記してみましょう。
+
+
+```
+body {
+	background: orange;
+}
+
+@include media-breakpoint-up(md) {
+  body {
+    background: red;
+  }
+}
+```
+
+サーバーを立ち上げます。
+
+```
+$ cd (Middleman のディレクトリ)
+$ middleman server
+```
+
+PC で　[http://localhost:4567](http://localhost:4567) を表示した時，画面を広くした時に背景が赤くなり，狭くした時に背景がオレンジになれば成功です。
+
