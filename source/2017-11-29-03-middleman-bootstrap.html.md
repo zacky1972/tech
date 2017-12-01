@@ -12,6 +12,12 @@ Middleman に npm, Webpack をインストールしておきます。
 3. [Middleman v4 で Webpack を使えるようにする](https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html)
 4. [Middleman v4 + webpack の上に jQuery を使えるようにする](https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html)
 
+## 完成品
+
+Middleman v4 + Bootstrap の GitHub レポジトリを作りました。
+
+[https://github.com/zacky1972/middleman-bootstrap](https://github.com/zacky1972/middleman-bootstrap)
+
 ## 手順
 
 1. npm で Bootstrap v4 と Popper.js をインストールする
