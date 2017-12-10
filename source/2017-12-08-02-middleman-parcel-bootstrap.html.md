@@ -127,7 +127,7 @@ $ middleman server
 
 [http://localhost:4567](http://localhost:4567) を表示した時に赤いボタンが表示されていれば成功です。
 
-次に source/stylesheets/site.css.scss に下記を追記してみましょう。
+次に source/stylesheets/site.css に下記を追記してみましょう。
 
 
 ```
