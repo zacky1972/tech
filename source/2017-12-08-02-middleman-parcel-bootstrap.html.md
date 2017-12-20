@@ -14,7 +14,7 @@ parcel 環境で Bootstrap を使えるようにしてみました。ちょっ�
 1. yarn で gulp を追加する
 2. yarn で gulp-coffee と gulp-sass を追加する
 3. config.rb の external_pipeline の設定に parcel と gulp を追加する
-4. gulp.coffee に scss を変換する設定を追加する
+4. gulpfile.coffee に scss を変換する設定を追加する
 5. site.css.scss を site.scss にリネームする
 6. yarn で jQuery, bootstrap, popper.js を追加する
 7. site.scss の bootstrap の記述を追加する
@@ -59,9 +59,9 @@ activate :external_pipeline, {
 
 好みで source/javascripts/site.js を source/javascripts/all.js にしてもいいです。
 
-## 4. gulp.coffee に scss を変換する設定を追加する
+## 4. gulpfile.coffee に scss を変換する設定を追加する
 
-Middleman のディレクトリに下記のような gulp.coffee を追加します。
+Middleman のディレクトリに下記のような gulpfile.coffee を追加します。
 
 ```coffee
 gulp = require 'gulp'
