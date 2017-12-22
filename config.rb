@@ -4,6 +4,8 @@ require 'slim'
 # Page options, layouts, aliases and proxies
 ###
 
+activate :livereload
+
 activate :blog do |blog|
   # ブログ機能のオプションを設定
   blog.default_extension = ".md"
