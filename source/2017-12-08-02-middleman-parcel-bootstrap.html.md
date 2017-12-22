@@ -44,14 +44,14 @@ activate :relative_assets
 
 activate :external_pipeline, {
 	name: :parcel,
-	command: "parcel build source/javascripts/site.js --out-dir build/javascripts/",
+	command: build? ? "parcel build source/javascripts/site.js --out-dir build/javascripts/" : "parcel watch source/javascripts/site.js --out-dir build/javascripts/",
 	source: "./build",
 	latency: 1
 }
 
 activate :external_pipeline, {
 	name: :gulp,
-	command: "gulp build:sass",
+	command: build? ? "gulp build" : 'gulp watch',
 	source: "./build",
 	latency: 1
 }
@@ -71,6 +71,13 @@ gulp.task 'build:sass', () ->
   gulp.src 'source/stylesheets/**/*.scss'
     .pipe sass()
     .pipe gulp.dest('build/stylesheets/')
+
+gulp.task 'watch:sass', ['build:sass'], () ->
+  gulp.watch ['source/stylesheets/**/*.scss'], ['build:sass']
+
+gulp.task 'build', ['build:sass']
+
+gulp.task 'watch', ['watch:sass']
 ```
 
 ## 5. site.css.scss を site.scss にリネームする

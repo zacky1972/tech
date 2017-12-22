@@ -68,7 +68,7 @@ activate :relative_assets
 # parcel を呼び出す設定にする
 activate :external_pipeline, {
 	name: :parcel,
-	command: "parcel build source/javascripts/all.js --out-dir build/javascripts/",
+	command: build? ? "parcel build source/javascripts/all.js --out-dir build/javascripts/" : "parcel watch source/javascripts/all.js --out-dir build/javascripts/",
 	source: './build',
 	latency: 1
 }
