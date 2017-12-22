@@ -4,6 +4,8 @@ require 'slim'
 # Page options, layouts, aliases and proxies
 ###
 
+set :time_zone, 'Tokyo'
+
 activate :livereload
 
 activate :blog do |blog|
