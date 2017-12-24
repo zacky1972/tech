@@ -55,11 +55,13 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
+
+  # activate :asset_hash
+
   # リポジトリ名を host に設定しておく
   # こうすることで stylesheet_link_tag などで展開されるパスが
   # https://zacky1972.github.io/tech/stylesheets/*.css
   # のようになる
-  activate :asset_hash
   activate :asset_host, :host => 'https://zacky1972.github.io/tech'
 end
 
