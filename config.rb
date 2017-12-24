@@ -13,6 +13,13 @@ activate :blog do |blog|
   blog.default_extension = ".md"
 end
 
+activate :external_pipeline, {
+  name: :gulp,
+  command: build? ? "gulp build" : 'gulp watch',
+  source: "./build",
+  latency: 1
+}
+
 ## GitHub Flavored Markdown
 set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
 set :markdown_engine, :redcarpet
@@ -55,11 +62,13 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
+
+  # activate :asset_hash
+
   # リポジトリ名を host に設定しておく
   # こうすることで stylesheet_link_tag などで展開されるパスが
   # https://zacky1972.github.io/tech/stylesheets/*.css
   # のようになる
-  activate :asset_hash
   activate :asset_host, :host => 'https://zacky1972.github.io/tech'
 end
 
