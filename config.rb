@@ -13,6 +13,13 @@ activate :blog do |blog|
   blog.default_extension = ".md"
 end
 
+activate :external_pipeline, {
+  name: :gulp,
+  command: build? ? "gulp build" : 'gulp watch',
+  source: "./build",
+  latency: 1
+}
+
 ## GitHub Flavored Markdown
 set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
 set :markdown_engine, :redcarpet
