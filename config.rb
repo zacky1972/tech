@@ -1,12 +1,13 @@
 require 'slim'
 
-###
-# Page options, layouts, aliases and proxies
-###
+$site_url = 'https://zacky1972.github.io/tech'
 
 set :time_zone, 'Tokyo'
 
 activate :livereload
+
+activate :relative_assets
+
 
 activate :blog do |blog|
   # ブログ機能のオプションを設定
@@ -23,6 +24,10 @@ activate :external_pipeline, {
 ## GitHub Flavored Markdown
 set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
 set :markdown_engine, :redcarpet
+
+###
+# Page options, layouts, aliases and proxies
+###
 
 # Per-page layout changes:
 #
@@ -50,7 +55,7 @@ page '/*.txt', layout: false
 # Methods defined in the helpers block are available in templates
 helpers do
   def hostUrl link
-    'https://zacky1972.github.io/tech' + link
+    $site_url + link
   end
 end
 
@@ -70,6 +75,13 @@ configure :build do
   # https://zacky1972.github.io/tech/stylesheets/*.css
   # のようになる
   activate :asset_host, :host => 'https://zacky1972.github.io/tech'
+
+  activate :iepab, {
+    name: :gulpPost,
+    command: "gulp post",
+    source: "./build",
+    latency: 1
+  }
 end
 
 # デプロイの設定

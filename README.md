@@ -8,5 +8,6 @@ $ rbenv global 2.4.2
 $ gem install middleman
 $ git clone git@github.com:zacky1972/tech.git
 $ cd tech
+$ yarn install
 $ bundle install
 ```

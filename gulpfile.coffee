@@ -86,14 +86,16 @@ gulp.task 'watch:txts', ['build:txts'], () ->
   gulp.watch ['lecture/data/img/**/*.txt'], ['build:txts']
 
 gulp.task 'build:js', () ->
-  gulp.src 'source/javascripts/site.js', {read:false}
-    .pipe parcel(['build'])
+  gulp.src 'source/javascripts/all.js', {read:false}
+    .pipe parcel()
     .pipe gulp.dest('build/javascripts/')
 
 gulp.task 'watch:js', () ->
-  gulp.src 'source/javascripts/site.js', {read:false}
-    .pipe parcel(['watch'])
-    .pipe gulp.dest('build/javascripts/')  
+  gulp.src 'source/javascripts/all.js', {read:false}
+    .pipe parcel({
+      watch: true
+    })
+    .pipe gulp.dest('build/javascripts/')
 
 gulp.task 'build', ['build:js', 'build:sass', 'build:images'], () ->
   sequence 'rev', 'rev:clean'
@@ -118,3 +120,5 @@ gulp.task 'rev:replace', () ->
 gulp.task 'rev:clean', () ->
   gulp.src ['build/**/*.+(js|css|png|gif|jpg|jpeg|svg|woff|ico)', '!build/**/*-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.+(js|css|png|gif|jpg|jpeg|svg|woff|ico)']
     .pipe(vinylPaths(del))
+
+gulp.task 'post', ['rev:replace']
