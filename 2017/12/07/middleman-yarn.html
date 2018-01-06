@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>Middleman v4 で npm から yarn に移行する</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="../../../stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="x2017 x2017_12 x2017_12_07 x2017_12_07_middleman-yarn"><h1>Middleman v4 で npm から yarn に移行する</h1>
+
+<p>Javascript 界隈の進化は早く，npm (Node Packeged Modules) よりベターな yarn というパッケージ管理ツールが登場しています。さっそく npm から yarn に乗り換えてみました。</p>
+
+<h2>手順</h2>
+
+<ol>
+<li>yarn をインストールする</li>
+<li>念のため node_modules を消去しておく</li>
+<li>yarn install を実行する</li>
+<li>config.rb で &quot;npm run&quot; としている箇所を &quot;yarn run&quot; に置き換える </li>
+</ol>
+
+<h2>1. yarn をインストールする</h2>
+
+<p>公式ガイドを参照ください。</p>
+
+<ul>
+<li><a href="https://yarnpkg.com/en/docs/install">Installation</a></li>
+</ul>
+
+<p>私は Mac なので，HomeBrew でインストールしました。</p>
+
+<pre><code>$ brew install yarn
+</code></pre>
+
+<h2>2. 念のため node_modules を消去しておく</h2>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ rm -rf node_modules
+</code></pre>
+
+<h2>3. yarn install を実行する</h2>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ yarn install
+</code></pre>
+
+<p>npm より相当高速にインストールされます。</p>
+
+<h2>4. config.rb で &quot;npm run&quot; としている箇所を &quot;yarn run&quot; に置き換える</h2>
+
+<p>エディタの置換機能をお使いください。</p>
+
+<h2>確認方法</h2>
+
+<p>次のコマンドを実行してエラーが出なければ大丈夫です。</p>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ middleman build
+</code></pre>
+</body></html>

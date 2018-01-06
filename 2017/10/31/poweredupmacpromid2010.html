@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>ぼくが かんがえた さいきょう Mac Pro (Mid 2010)</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="../../../stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="x2017 x2017_10 x2017_10_31 x2017_10_31_poweredupmacpromid2010"><h1>ぼくが かんがえた さいきょう Mac Pro (Mid 2010)</h1>
+
+<p>Mac Pro (Mid 2010) に次の装備をしました。</p>
+
+<ul>
+<li>メモリ 4GB (x4) 合計 16GB</li>
+<li>ZOTAC NVIDIA GeForce GTX680</li>
+<li>Allegro Pro USB3.0 PCIe</li>
+<li>Tempo SSD Pro Plus (x2)</li>
+<li>Crucial MX300 525GB (x4)</li>
+<li>Seagate IronWolf 10TB</li>
+</ul>
+
+<h2>セットアップのしかた</h2>
+
+<p>組み上げる順番が大事です。</p>
+
+<ol>
+<li>メモリと Seagate IronWolf 10TB を装着し，2基の Tempo SSD Pro Plus ＋ Crucial MX300 (x2) をスロット3,4に装着する。 <strong>ビデオカードは元のまま</strong></li>
+<li>起動して Disk Utility で RAID にしてフォーマットする</li>
+<li>再起動して ⌘+R を押してリカバリーモードに入り，OS をインストールする</li>
+<li>再起動して正常に起動することを確認する</li>
+<li>電源を落とす</li>
+<li>ZOTAC NVIDIA GeForce GTX680 をスロット1に装着する</li>
+<li>起動してしばらく待ち，画面が正常に表示されることを確認する</li>
+<li>電源を落とす</li>
+<li>Allegro Pro USB3.0 PCIe をスロット2に装着する</li>
+<li>起動してデバイスドライバーをインストールする</li>
+</ol>
+
+<p>SSD をフォーマットするより前に ZOTAC NVIDIA GeForce GTX680 を装着すると，SSD を装着した後に起動した際に画面が表示されません。</p>
+
+<h2>SSD(x4) RAID0 の威力</h2>
+
+<p>Blackmagic Design Disk Speed Test version 3.1 で計測しました。</p>
+
+<h3>装着前</h3>
+
+<p>Mac Pro (Mid 2010) + HDD</p>
+
+<ul>
+<li>Write 85.4MB/s</li>
+<li>Read 95.5MB/s</li>
+</ul>
+
+<h3>装着後</h3>
+
+<p>Mac Pro (Mid 2010) + Crucial MX300 x 4 RAID0</p>
+
+<ul>
+<li>Write  1085.5MB/s</li>
+<li>Read  1106.9MB/s</li>
+</ul>
+
+<h3>参考記録</h3>
+
+<p>新型 Mac Pro (2013)</p>
+
+<ul>
+<li>Write 761.8MB/s</li>
+<li>Read 939.9MB/s</li>
+</ul>
+
+<p>だそうです。新型 Mac Pro より速い！</p>
+
+<h2>NVIDIA GeForce GTX680 の威力</h2>
+
+<p>4K 出力が可能らしいです。</p>
+
+<p>でも目当てとしては 4K ではなく，Tensor Flow を走らせたかったので，NVIDIA 製のビデオカードにしたかったのです。</p>
+</body></html>

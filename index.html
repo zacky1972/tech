@@ -1,0 +1,201 @@
+<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>実験室 〜 Lab in ZACKY's Laboratory</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="index"><h1>実験室 〜 Lab in ZACKY's Laboratory</h1><article><h1><a href="https://zacky1972.github.io/tech/2018/01/06/parcel-encoding-url.html">parcel に Pull Request を送って merge されるまでの顛末記〜生まれてはじめて国際的に OSS への貢献をしてみたら，とても歓待された</a><time>2018/01/06(土)</time></h1><h1>parcel に Pull Request を送って merge されるまでの顛末記〜生まれてはじめて国際的に OSS への貢献をしてみたら，とても歓待された</h1>
+
+<p>2017年末に parcel に Pull Request を送ってから，年を越して2018年初に merge されました。</p>
+
+<p><a href="https://github.com/parcel-bundler/parcel/pull/401#issuecomment-355719292">Resolve Dependency correctly if the target asset is URI-encoded #401 (Issue of parcel-bundler/parcel on...</a></p><a href="https://zacky1972.github.io/tech/2018/01/06/parcel-encoding-url.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/12/24/middleman-iepab.html">middleman-iepab 公開しました。</a><time>2017/12/24(日)</time></h1><h1>middleman-iepab 公開しました。</h1>
+
+<p>middleman v4 では external pipeline を呼び出すのがビルドより前にしかできないのですが，たまにビルドより後に呼び出したい時があります。</p>
+
+<p>たとえば，asset_hash 相当の処理を rev と rev-replace を実行する gulp タスクの external pipeline で行いたい場合，rev-replace による *.html の書き換えはビルドより後でしか行えないので，既存の external...</p><a href="https://zacky1972.github.io/tech/2017/12/24/middleman-iepab.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/12/23/gulp-parcel.html">gulp-parcel 公開しました</a><time>2017/12/23(土)</time></h1><h1>gulp-parcel 公開しました</h1>
+
+<p>parcel を gulp から呼び出すプラグイン gulp-parcel を公開しました。</p>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/gulp-parcel">npmjs の公開ページ</a></li>
+<li><a href="https://github.com/zacky1972/gulp-parcel">ソースコード(GitHub)</a></li>
+</ul>
+
+<p>はじめて gulp プラグインを作ったので，いろいろ制約があります。</p>
+
+<ul>
+<li>入力となる gulp.src では read:false をつけないといけない</li>
+<li>ワーキングディレクトリに .tmp-gulpcompile-xxx というディレクトリを作成し，削除するので，同名のファイルがあるとエラーにな...</li>
+</ul><a href="https://zacky1972.github.io/tech/2017/12/23/gulp-parcel.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/12/08/middleman-parcel.html">Middleman v4 で parcel を使ってみる</a><time>2017/12/08(金)</time></h1><h1>Middleman v4 で parcel を使ってみる</h1>
+
+<p>Javascript 界隈の進化は早く，webpack 全盛時代から今度は parcel だと！ さっそく parcel を使ってみました。</p>
+
+<h2>前提: Middleman と yarn の設定</h2>
+
+<pre><code>$ gem install middleman
+$ gem install slim
+$ middleman init (プロジェクト名) -T yterajima/middleman-slim
+</code></pre>
+
+<p>最初の Middleman インストー...</p><a href="https://zacky1972.github.io/tech/2017/12/08/middleman-parcel.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/12/08/02-middleman-parcel-bootstrap.html">Middleman v4 + parcel で Bootstrap を使う</a><time>2017/12/08(金)</time></h1><h1>Middleman v4 + parcel で Bootstrap を使う</h1>
+
+<p>parcel 環境で Bootstrap を使えるようにしてみました。ちょっと残念なことに，完全に parcel だけではうまくいかず，scss の変換で gulp を併用しています。</p>
+
+<h2>前提</h2>
+
+<ul>
+<li><a href="https://zacky1972.github.io/tech/2017/12/08/middleman-parcel.html">Middleman v4 で parcel を使ってみる</a></li>
+</ul>
+
+<h2>手順</h2>
+
+<ol>
+<li>yarn で gulp を追加する</li>
+<li>yarn で gulp-coffee と gulp-sass を追加する</li>
+<li>config.rb の external_pipeline...</li>
+</ol><a href="https://zacky1972.github.io/tech/2017/12/08/02-middleman-parcel-bootstrap.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/12/07/middleman-yarn.html">Middleman v4 で npm から yarn に移行する</a><time>2017/12/07(木)</time></h1><h1>Middleman v4 で npm から yarn に移行する</h1>
+
+<p>Javascript 界隈の進化は早く，npm (Node Packeged Modules) よりベターな yarn というパッケージ管理ツールが登場しています。さっそく npm から yarn に乗り換えてみました。</p>
+
+<h2>手順</h2>
+
+<ol>
+<li>yarn をインストールする</li>
+<li>念のため node_modules を消去しておく</li>
+<li>yarn install を実行する</li>
+<li>config.rb で "npm run" としている箇所を "yarn...</li>
+</ol><a href="https://zacky1972.github.io/tech/2017/12/07/middleman-yarn.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/03-middleman-bootstrap.html">Middleman v4 + webpack の上に Bootstrap v4  を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 + webpack の上に Bootstrap v4 を使えるようにする</h1>
+
+<h2>前提</h2>
+
+<p>Middleman に npm, Webpack をインストールしておきます。</p>
+
+<ol>
+<li><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">GitHub Pages で Middleman v4 を使う</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">Middleman v4 で npm を使えるようにする</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">Middleman v4 で Webpack を使えるようにする</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">Middleman v4 + webpack の上に jQuery を使えるようにする</a></li>
+</ol>
+
+<h2>完成品</h2>
+
+<p>Middleman...</p><a href="https://zacky1972.github.io/tech/2017/11/29/03-middleman-bootstrap.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">Middleman v4 + webpack の上に jQuery を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 + webpack の上に jQuery を使えるようにする</h1>
+
+<h2>参考記事</h2>
+
+<ul>
+<li><a href="http://elsur.xyz/webpack-jquery-ways-to-work">webpackでjQueryを読み込む２つの方法</a></li>
+<li><a href="https://webpack.js.org/configuration/">webpack 公式ドキュメント〜Configuration</a></li>
+</ul>
+
+<h2>前提</h2>
+
+<p>Middleman に npm, Webpack をインストールしておきます。</p>
+
+<ol>
+<li><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">GitHub Pages で Middleman v4 を使う</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">Middleman v4 で npm を使えるようにする</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">Middleman v4 で Webpack を使えるように...</a></li>
+</ol><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">Middleman v4 で Webpack を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 で Webpack を使えるようにする</h1>
+
+<p>今までブラウザ側の Javascript を Browserify で管理していたのですが，最近は Webpack の方がいいらしいという情報をキャッチしたので，新しく立ち上げる Middleman のウェブサイトのために，Webpack ベースで立ち上げてみることにしました。</p>
+
+<h2>参考記事</h2>
+
+<ul>
+<li><a href="https://blog.leko.jp/post/how-to-use-webpack-with-middleman/">MiddlemanのビルドにWebpackを組み込む方法</a></li>
+</ul>
+
+<h2>前提</h2>
+
+<p>Middleman に npm をインストールしておきます。</p><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/12/middleman-bootstrap.html">Middleman v4 + gulp + Browserify で Bootstrap v4 を使えるようにする</a><time>2017/11/12(日)</time></h1><h1>Middleman v4 + gulp + Browserify で Bootstrap v4 を使えるようにする</h1>
+
+<p>いよいよ Bootstrap v4 をインストールします。ここまで長かった。</p>
+
+<h2>前提</h2>
+
+<p>Middleman に npm, gulp, Browserify, jQuery をインストールしておきます。</p>
+
+<ol>
+<li><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">GitHub Pages で Middleman v4 を使う</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">Middleman v4 で npm を使えるようにする</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/11/02-middleman-gulp.html">Middleman v4 で gulp を使える...</a></li>
+</ol><a href="https://zacky1972.github.io/tech/2017/11/12/middleman-bootstrap.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">Middleman v4 で npm を使えるようにする</a><time>2017/11/11(土)</time></h1><h1>Middleman v4 で npm を使えるようにする</h1>
+
+<p>npm は Node Packaged Modules の略で，主にフロントエンド周りのパッケージ管理ツールです。Middleman v4 では外部パイプライン(external_pipeline)で npm を使ってパッケージ管理をするのが主流となってきています。</p>
+
+<p>Middleman で npm を使うには次のことをします。</p>
+
+<ol>
+<li>Middleman をインストールしたディレクトリ上で npm init を実行する</li>
+<li>.gitignore...</li>
+</ol><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/11/03-middleman-browserify.html">Middleman v4 で Browserify を使えるようにする</a><time>2017/11/11(土)</time></h1><h1>Middleman v4 で Browserify を使えるようにする</h1>
+
+<p>Browserify によって npm によるパッケージ管理をブラウザでも利用できるようになります。</p>
+
+<h2>参考記事</h2>
+
+<ul>
+<li><a href="https://whiskers.nukos.kitchen/2016/10/07/middleman-external-pipeline.html">Middleman 4 の External Pipeline（外部パイプライン）を試す</a></li>
+<li><a href="https://whiskers.nukos.kitchen/2016/10/13/middleman-external-pipeline-server-build.html">Middleman 4 の External Pipeline を活用した Sass のプリコンパイルと Browserify のバンドル</a></li>
+</ul>
+
+<h2>前提</h2>
+
+<p>Middleman に npm と gulp をインストール...</p><a href="https://zacky1972.github.io/tech/2017/11/11/03-middleman-browserify.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/11/05-middleman-jquery.html">Middleman v4 + gulp + Browserify で jQuery を使えるようにする</a><time>2017/11/11(土)</time></h1><h1>Middleman v4 + gulp + Browserify で jQuery を使えるようにする</h1>
+
+<p>Middleman v4 は外部パイプラインになったので，それに合わせて Middleman への jQuery のインストールの方法も多様なバリエーションが提供されるようになりました。今回はその1つとして，gulp，Browserify を使った方法を説明します。</p>
+
+<p>この中で browserify-shim を使います。browserify-shim は jQuery などの CommonJS...</p><a href="https://zacky1972.github.io/tech/2017/11/11/05-middleman-jquery.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/11/04-middleman-sass.html">Middleman v4 + gulp + Browserify で Sass/Scss を使えるようにする</a><time>2017/11/11(土)</time></h1><h1>Middleman v4 + gulp + Browserify で Sass/Scss を使えるようにする</h1>
+
+<p>Sass/Scss は保守性を向上させた CSS と思えばいいです。変数や関数が記述できるようになります。</p>
+
+<p>Middleman はもともと Renderer によって Sass/Scss を CSS に変換していますが，外部パイプラインにして gulp + Browserify の設定にすると，Renderer を止めてしまうので，gulp + Browserify の環境下で...</p><a href="https://zacky1972.github.io/tech/2017/11/11/04-middleman-sass.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/11/02-middleman-gulp.html">Middleman v4 で gulp を使えるようにする</a><time>2017/11/11(土)</time></h1><h1>Middleman v4 で gulp を使えるようにする</h1>
+
+<p>gulp は　javascript のビルドシステムです。</p>
+
+<h2>参考記事</h2>
+
+<ul>
+<li><a href="http://t4traw.github.io/tech/20160331tech.html">middleman+gulpで静的サイトのテンプレート的な物を作ってみる</a></li>
+</ul>
+
+<h2>前提</h2>
+
+<p>Middleman に npm をインストールしておきます。</p>
+
+<ol>
+<li><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">GitHub Pages で Middleman v4 を使う</a></li>
+<li><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">Middleman v4 で npm を使えるようにする</a></li>
+</ol>
+
+<h2>手順</h2>
+
+<ol>
+<li>npm で gulp をインストールする</li>
+<li>config.rb を編集...</li>
+</ol><a href="https://zacky1972.github.io/tech/2017/11/11/02-middleman-gulp.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">GitHub Pages で Middleman v4 を使う</a><time>2017/11/04(土)</time></h1><h1>GitHub Pages で Middleman v4 を使う</h1>
+
+<p>この Tech ブログは Middleman v4 を GitHub Pages 上に立ち上げました。忘れないように手順を記したいと思います。</p>
+
+<p>参考にした記事: </p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20140209/1391955805">middleman で構築したサイトを GitHub Pages で公開するまでの流れをまとめてみた</a></li>
+<li><a href="https://qiita.com/eichann/items/4b2d6e6027b77cd1d12c">【middleman】slimのテンプレートでinitする</a></li>
+<li><a href="http://www.mdesign-works.com/blog/web/tech-middleman-blog/">middlemanでブログを作ろう。インストールから初期設定まで（slimも少々）</a></li>
+<li><a href="http://engineer.recruit-lifestyle.co.jp/techblog/2015-10-05-engineer-portal-site-2/">WordPress...</a></li>
+</ul><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/10/31/poweredupmacpromid2010.html">ぼくが かんがえた さいきょう Mac Pro (Mid 2010)</a><time>2017/10/31(火)</time></h1><h1>ぼくが かんがえた さいきょう Mac Pro (Mid 2010)</h1>
+
+<p>Mac Pro (Mid 2010) に次の装備をしました。</p>
+
+<ul>
+<li>メモリ 4GB (x4) 合計 16GB</li>
+<li>ZOTAC NVIDIA GeForce GTX680</li>
+<li>Allegro Pro USB3.0 PCIe</li>
+<li>Tempo SSD Pro Plus (x2)</li>
+<li>Crucial MX300 525GB (x4)</li>
+<li>Seagate IronWolf 10TB</li>
+</ul>
+
+<h2>セットアップのしかた</h2>
+
+<p>組み上げる順番が大事です。</p>
+
+<ol>
+<li>メモリと...</li>
+</ol><a href="https://zacky1972.github.io/tech/2017/10/31/poweredupmacpromid2010.html">もっと読む</a></article></body></html>

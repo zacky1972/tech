@@ -1,0 +1,148 @@
+<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>Middleman v4 + parcel で Bootstrap を使う</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="../../../stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="x2017 x2017_12 x2017_12_08 x2017_12_08_02-middleman-parcel-bootstrap"><h1>Middleman v4 + parcel で Bootstrap を使う</h1>
+
+<p>parcel 環境で Bootstrap を使えるようにしてみました。ちょっと残念なことに，完全に parcel だけではうまくいかず，scss の変換で gulp を併用しています。</p>
+
+<h2>前提</h2>
+
+<ul>
+<li><a href="https://zacky1972.github.io/tech/2017/12/08/middleman-parcel.html">Middleman v4 で parcel を使ってみる</a></li>
+</ul>
+
+<h2>手順</h2>
+
+<ol>
+<li>yarn で gulp を追加する</li>
+<li>yarn で gulp-coffee と gulp-sass を追加する</li>
+<li>config.rb の external_pipeline の設定に parcel と gulp を追加する</li>
+<li>gulpfile.coffee に scss を変換する設定を追加する</li>
+<li>site.css.scss を site.scss にリネームする</li>
+<li>yarn で jQuery, bootstrap, popper.js を追加する</li>
+<li>site.scss の bootstrap の記述を追加する</li>
+<li>site.js (もしくは all.js) に bootstrap の記述を追加する</li>
+</ol>
+
+<h2>1. yarn で gulp を追加する</h2>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ yarn global add gulp
+$ yarn add gulp
+</code></pre>
+
+<h2>2. yarn で gulp-coffee と gulp-sass を追加する</h2>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ yarn add gulp-coffee gulp-sass
+</code></pre>
+
+<h2>3. config.rb の external_pipeline の設定に parcel と gulp を追加する</h2>
+
+<p>config.rb の external_pipeline の設定を次のようにします。</p>
+
+<pre><code class="ruby">activate :relative_assets
+
+activate :external_pipeline, {
+    name: :parcel,
+    command: build? ? &quot;parcel build source/javascripts/site.js --out-dir build/javascripts/&quot; : &quot;parcel watch source/javascripts/site.js --out-dir build/javascripts/&quot;,
+    source: &quot;./build&quot;,
+    latency: 1
+}
+
+activate :external_pipeline, {
+    name: :gulp,
+    command: build? ? &quot;gulp build&quot; : &#39;gulp watch&#39;,
+    source: &quot;./build&quot;,
+    latency: 1
+}
+</code></pre>
+
+<p>好みで source/javascripts/site.js を source/javascripts/all-b5848eaff7.js にしてもいいです。</p>
+
+<h2>4. gulpfile.coffee に scss を変換する設定を追加する</h2>
+
+<p>Middleman のディレクトリに下記のような gulpfile.coffee を追加します。</p>
+
+<pre><code class="coffee">gulp = require &#39;gulp&#39;
+sass = require &#39;gulp-sass&#39;
+
+gulp.task &#39;build:sass&#39;, () -&gt;
+  gulp.src &#39;source/stylesheets/**/*.scss&#39;
+    .pipe sass()
+    .pipe gulp.dest(&#39;build/stylesheets/&#39;)
+
+gulp.task &#39;watch:sass&#39;, [&#39;build:sass&#39;], () -&gt;
+  gulp.watch [&#39;source/stylesheets/**/*.scss&#39;], [&#39;build:sass&#39;]
+
+gulp.task &#39;build&#39;, [&#39;build:sass&#39;]
+
+gulp.task &#39;watch&#39;, [&#39;watch:sass&#39;]
+</code></pre>
+
+<h2>5. site.css.scss を site.scss にリネームする</h2>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ mv source/stylesheets/site-94d8959926.css.scss source/stylesheets/site.scss 
+</code></pre>
+
+<h2>6. yarn で jQuery, bootstrap, popper.js を追加する</h2>
+
+<pre><code>$ cd (Middlemanのディレクトリ)
+$ yarn add jquery bootstrap@4.0.0-beta.2 popper.js
+</code></pre>
+
+<h2>7. site.scss の bootstrap の記述を追加する</h2>
+
+<p>source/stylesheets/site.scss の冒頭を次のようにします。</p>
+
+<pre><code class="scss">@charset &quot;utf-8&quot;;
+@import &quot;normalize&quot;;
+@import &quot;../../node_modules/bootstrap/scss/bootstrap&quot;;
+</code></pre>
+
+<h2>8. site.js (もしくは all.js) に bootstrap の記述を追加する</h2>
+
+<p>source/javascripts/site.js (もしくは all.js) に次のように記述します。</p>
+
+<pre><code class="javascript">var $ = window.$ = window.jQuery = require(&#39;jquery&#39;);
+window.Popper = require(&#39;popper.js&#39;);
+require(&#39;bootstrap&#39;);
+</code></pre>
+
+<h2>確認方法</h2>
+
+<p>まず，Javascript Console でエラーが出ていないことを確認しましょう。</p>
+
+<p>次に source/index.html.slim に下記を追記してボタンを配置してみましょう。</p>
+
+<pre><code class="slim">.container
+    button type=&quot;button&quot; class=&quot;btn btn-danger&quot; Danger
+</code></pre>
+
+<p>サーバーを立ち上げます。</p>
+
+<pre><code>$ cd (Middleman のディレクトリ)
+$ middleman server
+</code></pre>
+
+<p><a href="http://localhost:4567">http://localhost:4567</a> を表示した時に赤いボタンが表示されていれば成功です。</p>
+
+<p>次に source/stylesheets/site-94d8959926.css に下記を追記してみましょう。</p>
+
+<pre><code>body {
+    background: orange;
+}
+
+@include media-breakpoint-up(md) {
+  body {
+    background: red;
+  }
+}
+</code></pre>
+
+<p>サーバーを立ち上げます。</p>
+
+<pre><code>$ cd (Middleman のディレクトリ)
+$ middleman server
+</code></pre>
+
+<p>PC で　<a href="http://localhost:4567">http://localhost:4567</a> を表示した時，画面を広くした時に背景が赤くなり，狭くした時に背景がオレンジになれば成功です。</p>
+</body></html>
