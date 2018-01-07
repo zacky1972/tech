@@ -14,7 +14,7 @@
     "gulp-filesinstream": "^0.9.3",
     "gulp-image-resize": "^0.13.0",
     "gulp-imagemin": "^4.0.0",
-    "gulp-parcel": "^0.2.7",
+    "gulp-parcel": "^0.2.8",
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^8.1.1",
     "gulp-rev-replace": "zacky1972/gulp-rev-replace#master",
