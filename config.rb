@@ -1,6 +1,6 @@
 require 'slim'
 
-$site_url = 'https://zacky1972.github.io/tech'
+$site_url = ''
 
 set :time_zone, 'Tokyo'
 
@@ -74,7 +74,10 @@ configure :build do
   # こうすることで stylesheet_link_tag などで展開されるパスが
   # https://zacky1972.github.io/tech/stylesheets/*.css
   # のようになる
-  activate :asset_host, :host => 'https://zacky1972.github.io/tech'
+
+  $site_url = 'https://zacky1972.github.io/tech'
+
+  activate :asset_host, :host => $site_url
 
   activate :iepab, {
     name: :gulpPost,
@@ -82,6 +85,7 @@ configure :build do
     source: "./build",
     latency: 1
   }
+
 end
 
 # デプロイの設定
