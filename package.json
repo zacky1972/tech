@@ -22,5 +22,12 @@
     "rev-del": "^1.0.5",
     "run-sequence": "^2.2.0",
     "vinyl-paths": "^2.1.0"
+  },
+  "scripts": {
+    "setup": "bundle install && yarn install",
+    "build": "bundle exec middleman build",
+    "serve": "bundle exec middleman serve",
+    "deploy": "bundle exec middlman deploy",
+    "article": "bundle exec middleman article "
   }
 }
