@@ -1,0 +1,151 @@
+<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>Elixir でバイナリをダンプしてみる</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="../../../stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="x2018 x2018_02 x2018_02_07 x2018_02_07_elixir-binaries-dump"><h1>Elixir でバイナリをダンプしてみる</h1>
+
+<p>とある longest march を敢行するプロジェクトが静かにスタート，第一歩として Elixir でバイナリをダンプしてみるプログラムを書いてみる。</p>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="https://elixirschool.com/ja/lessons/basics/mix/">Mix〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/documentation/">ドキュメント〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/advanced/typespec">仕様と型〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/modules/">モジュール〜Elixir School</a></li>
+<li><a href="http://elixir-ja.sena-net.works/getting_started/12.html">12 入出力 - IO</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/pattern-matching/">パターンマッチング〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/control-structures/">制御構造〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/functions/">関数〜Elixir School</a></li>
+<li><a href="http://elixir-ja.sena-net.works/getting_started/6.html">6 バイナリ，文字列そして文字リスト - Binaries, strings and char lists</a></li>
+<li><a href="https://hexdocs.pm/elixir/Integer.html">Integer</a></li>
+<li><a href="https://qiita.com/noco/items/f99007954972c9ef5e50">Elixir文字列まとめ</a></li>
+</ol>
+
+<h2>最初にしたこと</h2>
+
+<pre><code class="bash">$ mix new dump
+* creating README.md
+* creating .gitignore
+* creating mix.exs
+* creating config
+* creating config/config.exs
+* creating lib
+* creating lib/dump.ex
+* creating test
+* creating test/test_helper.exs
+* creating test/dump_test.exs
+
+Your Mix project was created successfully.
+You can use &quot;mix&quot; to compile it, test it, and more:
+
+    cd dump
+    mix test
+
+Run &quot;mix help&quot; for more commands.
+$ cd dump
+$ git init
+$ git add -A
+$ git commit -m &quot;first commit&quot;
+</code></pre>
+
+<p><code>README.md</code> を適当に変える。</p>
+
+<p>作成したレポジトリは <a href="https://github.com/zacky1972/dump">https://github.com/zacky1972/dump</a></p>
+
+<h2>モジュールの作成</h2>
+
+<p>作った Elixir プログラム <code>lib/dump.ex</code></p>
+
+<pre><code class="elixir">defmodule Dump do
+  @moduledoc &quot;&quot;&quot;
+  This provides the `dump/1` `dump_p/1` `dump_f/1` `dump_d/1` and `last2/1` functions. 
+  &quot;&quot;&quot;
+
+  @doc &quot;&quot;&quot;
+  This dumps binary files to stdard output.
+
+  ## Parameter
+
+  - path: is data or a binary file path to dump.
+
+  &quot;&quot;&quot;
+  @spec dump(Path.t()) :: String.t()
+  def dump(path) do
+    IO.puts dump_p(path)
+  end
+
+  @doc &quot;&quot;&quot;
+  This dumps binary files to String.
+
+  ## Parameter
+
+  - path: is data or a binary file path to dump.
+
+  ## Examples
+
+    iex&gt; Dump.dump_p(&quot;./test/sample&quot;)
+    &quot;41 42 43 44 45 46 47 48\\n49 4A 4B 4C 4D 4E\\n\\n&quot;
+
+  &quot;&quot;&quot;
+  @spec dump_p(Path.t()) :: String.t()
+  def dump_p(path) do
+    {:ok, file} = File.open path, [:read]
+    dump_f(file)
+  end
+
+  @doc &quot;&quot;&quot;
+  This dumps binary files to String.
+
+  ## Parameter
+
+  - file: is data or a binary file path to dump.
+
+  &quot;&quot;&quot;
+  @spec dump_f(File.t()) :: String.t()
+  def dump_f(file) do
+    case IO.binread(file, 8) do
+      {:error, reason} -&gt; {:error, reason} 
+      :eof -&gt; &quot;\n&quot;
+      data -&gt; &quot;#{dump_d(data)}\n#{dump_f(file)}&quot;
+    end
+  end
+
+
+  @doc &quot;&quot;&quot;
+  This dumps binary data to String.
+
+  ## Parameters
+
+  - data: is binary data to dump.
+
+  ## Examples
+
+    iex&gt; Dump.dump_d(&lt;&lt;0, 1, 2, 3&gt;&gt;)
+    &quot;00 01 02 03&quot;
+
+  &quot;&quot;&quot;
+  @spec dump_d(binary) :: String.t()
+  def dump_d(data) do
+    case data do
+      &lt;&lt;&gt;&gt; -&gt; :ok
+      &lt;&lt;x :: integer&gt;&gt; -&gt; &quot;0#{Integer.to_string(x, 16)}&quot; |&gt; last2  
+      &lt;&lt;x :: integer, y :: binary&gt;&gt; -&gt; &quot;#{dump_d(&lt;&lt;x&gt;&gt;)} #{dump_d(y)}&quot;
+    end
+  end
+
+  @doc &quot;&quot;&quot;
+  This slices the last 2 chars.
+
+  ## Parameters
+
+  - string: is string to slice.
+
+  ## Examples
+
+    iex&gt; Dump.last2(&quot;0123&quot;)
+    &quot;23&quot;
+  &quot;&quot;&quot;
+  @spec last2(String.t()) :: String.t()
+  def last2(string) do
+    String.slice(string, String.length(string) - 2, String.length(string))
+  end
+end
+</code></pre>
+</body></html>

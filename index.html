@@ -1,4 +1,19 @@
-<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>実験室 〜 Lab in ZACKY's Laboratory</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="index"><h1>実験室 〜 Lab in ZACKY's Laboratory</h1><article><h1><a href="https://zacky1972.github.io/tech/2018/01/06/parcel-encoding-url.html">parcel に Pull Request を送って merge されるまでの顛末記〜生まれてはじめて国際的に OSS への貢献をしてみたら，とても歓待された</a><time>2018/01/06(土)</time></h1><h1>parcel に Pull Request を送って merge されるまでの顛末記〜生まれてはじめて国際的に OSS への貢献をしてみたら，とても歓待された</h1>
+<!DOCTYPE html><html><head><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta charset="utf-8" /><meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /><title>実験室 〜 Lab in ZACKY's Laboratory</title><link href="//fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css" /><link href="stylesheets/site-94d8959926.css" rel="stylesheet" /><script src="https://zacky1972.github.io/tech/javascripts/all-b5848eaff7.js" async="async"></script></head><body class="index"><h1>実験室 〜 Lab in ZACKY's Laboratory</h1><article><h1><a href="https://zacky1972.github.io/tech/2018/02/07/elixir-binaries-dump.html">Elixir でバイナリをダンプしてみる</a><time>2018/02/07(水)</time></h1><h1>Elixir でバイナリをダンプしてみる</h1>
+
+<p>とある longest march を敢行するプロジェクトが静かにスタート，第一歩として Elixir でバイナリをダンプしてみるプログラムを書いてみる。</p>
+
+<h2>参考文献</h2>
+
+<ol>
+<li><a href="https://elixirschool.com/ja/lessons/basics/mix/">Mix〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/documentation/">ドキュメント〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/advanced/typespec">仕様と型〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/modules/">モジュール〜Elixir School</a></li>
+<li><a href="http://elixir-ja.sena-net.works/getting_started/12.html">12 入出力 - IO</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/pattern-matching/">パターンマッチング〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/control-structures/">制御構造〜Elixir School</a></li>
+<li><a href="https://elixirschool.com/ja/lessons/basics/functions/">関数〜Elixir...</a></li>
+</ol><a href="https://zacky1972.github.io/tech/2018/02/07/elixir-binaries-dump.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2018/01/06/parcel-encoding-url.html">parcel に Pull Request を送って merge されるまでの顛末記〜生まれてはじめて国際的に OSS への貢献をしてみたら，とても歓待された</a><time>2018/01/06(土)</time></h1><h1>parcel に Pull Request を送って merge されるまでの顛末記〜生まれてはじめて国際的に OSS への貢献をしてみたら，とても歓待された</h1>
 
 <p>2017年末に parcel に Pull Request を送ってから，年を越して2018年初に merge されました。</p>
 
@@ -73,7 +88,19 @@ $ middleman init (プロジェクト名) -T yterajima/middleman-slim
 
 <h2>完成品</h2>
 
-<p>Middleman...</p><a href="https://zacky1972.github.io/tech/2017/11/29/03-middleman-bootstrap.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">Middleman v4 + webpack の上に jQuery を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 + webpack の上に jQuery を使えるようにする</h1>
+<p>Middleman...</p><a href="https://zacky1972.github.io/tech/2017/11/29/03-middleman-bootstrap.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">Middleman v4 で Webpack を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 で Webpack を使えるようにする</h1>
+
+<p>今までブラウザ側の Javascript を Browserify で管理していたのですが，最近は Webpack の方がいいらしいという情報をキャッチしたので，新しく立ち上げる Middleman のウェブサイトのために，Webpack ベースで立ち上げてみることにしました。</p>
+
+<h2>参考記事</h2>
+
+<ul>
+<li><a href="https://blog.leko.jp/post/how-to-use-webpack-with-middleman/">MiddlemanのビルドにWebpackを組み込む方法</a></li>
+</ul>
+
+<h2>前提</h2>
+
+<p>Middleman に npm をインストールしておきます。</p><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">Middleman v4 + webpack の上に jQuery を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 + webpack の上に jQuery を使えるようにする</h1>
 
 <h2>参考記事</h2>
 
@@ -90,19 +117,7 @@ $ middleman init (プロジェクト名) -T yterajima/middleman-slim
 <li><a href="https://zacky1972.github.io/tech/2017/11/04/middleman.html">GitHub Pages で Middleman v4 を使う</a></li>
 <li><a href="https://zacky1972.github.io/tech/2017/11/11/01-middleman-npm.html">Middleman v4 で npm を使えるようにする</a></li>
 <li><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">Middleman v4 で Webpack を使えるように...</a></li>
-</ol><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">Middleman v4 で Webpack を使えるようにする</a><time>2017/11/29(水)</time></h1><h1>Middleman v4 で Webpack を使えるようにする</h1>
-
-<p>今までブラウザ側の Javascript を Browserify で管理していたのですが，最近は Webpack の方がいいらしいという情報をキャッチしたので，新しく立ち上げる Middleman のウェブサイトのために，Webpack ベースで立ち上げてみることにしました。</p>
-
-<h2>参考記事</h2>
-
-<ul>
-<li><a href="https://blog.leko.jp/post/how-to-use-webpack-with-middleman/">MiddlemanのビルドにWebpackを組み込む方法</a></li>
-</ul>
-
-<h2>前提</h2>
-
-<p>Middleman に npm をインストールしておきます。</p><a href="https://zacky1972.github.io/tech/2017/11/29/01-middleman-webpack.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/12/middleman-bootstrap.html">Middleman v4 + gulp + Browserify で Bootstrap v4 を使えるようにする</a><time>2017/11/12(日)</time></h1><h1>Middleman v4 + gulp + Browserify で Bootstrap v4 を使えるようにする</h1>
+</ol><a href="https://zacky1972.github.io/tech/2017/11/29/02-middleman-jquery.html">もっと読む</a></article><article><h1><a href="https://zacky1972.github.io/tech/2017/11/12/middleman-bootstrap.html">Middleman v4 + gulp + Browserify で Bootstrap v4 を使えるようにする</a><time>2017/11/12(日)</time></h1><h1>Middleman v4 + gulp + Browserify で Bootstrap v4 を使えるようにする</h1>
 
 <p>いよいよ Bootstrap v4 をインストールします。ここまで長かった。</p>
 
