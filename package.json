@@ -27,7 +27,7 @@
     "setup": "bundle install && yarn install",
     "build": "bundle exec middleman build",
     "serve": "bundle exec middleman serve",
-    "deploy": "bundle exec middlman deploy",
+    "deploy": "bundle exec middleman deploy",
     "article": "bundle exec middleman article "
   }
 }
